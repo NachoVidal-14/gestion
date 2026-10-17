@@ -1,0 +1,85 @@
+import type { Task, Technician, User } from "@/types";
+export const administrator: User = {
+  id: "admin-1",
+  name: "María González",
+  email: "admin@demo.local",
+  role: "ADMIN",
+};
+export const technicians: Technician[] = [
+  {
+    id: "tec-1",
+    name: "Diego Martínez",
+    email: "tecnico@demo.local",
+    role: "TECNICO",
+    status: "Activo",
+  },
+  {
+    id: "tec-2",
+    name: "Camila Torres",
+    email: "camila@demo.local",
+    role: "TECNICO",
+    status: "Activo",
+  },
+  {
+    id: "tec-3",
+    name: "Felipe Rojas",
+    email: "felipe@demo.local",
+    role: "TECNICO",
+    status: "Activo",
+  },
+  {
+    id: "tec-4",
+    name: "Valentina Silva",
+    email: "valentina@demo.local",
+    role: "TECNICO",
+    status: "Activo",
+  },
+  {
+    id: "tec-5",
+    name: "Andrés López",
+    email: "andres@demo.local",
+    role: "TECNICO",
+    status: "Inactivo",
+  },
+];
+const descriptions = [
+  "Revisión de equipos en oficina central",
+  "Mantenimiento preventivo de climatización",
+  "Instalación de punto de red en recepción",
+  "Inspección de tablero eléctrico",
+  "Resolución de incidencia de conectividad",
+  "Actualización de estaciones de trabajo",
+  "Revisión de sensores de acceso",
+  "Mantenimiento de sistema de respaldo",
+  "Inspección de equipos de seguridad",
+  "Configuración de impresora de operaciones",
+  "Reparación de luminarias en bodega",
+  "Diagnóstico de servidor de archivos",
+  "Control de equipos en sucursal norte",
+  "Instalación de monitor en sala de reuniones",
+  "Revisión de cableado estructurado",
+  "Resolución de incidencia de telefonía",
+  "Mantenimiento de cámaras de acceso",
+  "Actualización de inventario técnico",
+  "Revisión de conexiones en sucursal sur",
+  "Inspección preventiva de infraestructura",
+];
+export const initialTasks: Task[] = descriptions.map((description, i) => ({
+  id: `REG-${String(i + 1).padStart(4, "0")}`,
+  date: `2026-10-${String(10 + (i % 8)).padStart(2, "0")}`,
+  technicianId: technicians[i % 5].id,
+  category: ["Mantenimiento", "Instalación", "Incidencia", "Inspección"][i % 4],
+  description,
+  status: (["Pendiente", "En progreso", "Completada"] as const)[i % 3],
+  priority: (["Alta", "Media", "Baja"] as const)[i % 3],
+  updatedAt: "2026-10-17T09:30:00.000Z",
+  observations: "",
+  activity: [
+    {
+      id: `act-${i}`,
+      date: "2026-10-10T10:00:00.000Z",
+      message: "Registro creado y asignado al técnico.",
+      userId: administrator.id,
+    },
+  ],
+}));
